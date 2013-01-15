@@ -9,15 +9,15 @@ package com.artivisi.absensi.domain;
  * @author cak-ust
  */
 public class Peserta {
-    private String no;
+    private String nomor;
     private String nama;
 
-    public String getNo() {
-        return no;
+    public String getNomor() {
+        return nomor;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setNomor(String no) {
+        this.nomor = no;
     }
 
     public String getNama() {
