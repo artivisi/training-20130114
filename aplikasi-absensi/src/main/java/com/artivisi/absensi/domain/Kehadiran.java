@@ -11,9 +11,18 @@ import java.util.Date;
  * @author endy
  */
 public class Kehadiran {
+    private Integer id;
     private Peserta peserta;
     private Date jamMasuk;
     private Date jamPulang;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Peserta getPeserta() {
         return peserta;
