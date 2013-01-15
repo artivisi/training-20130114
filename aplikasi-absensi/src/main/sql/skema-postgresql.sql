@@ -18,3 +18,11 @@ create table jenis (
 
 insert into jenis (kode,nama,denda_telat,tarif_lembur) 
 values ('2','benny',2000,50000);
+
+
+create table peserta(
+int serial primary key, 
+nama varchar(50)
+);
+
+insert into peserta(nama) values('Ustadho');
