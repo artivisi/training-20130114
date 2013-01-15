@@ -6,35 +6,28 @@ package com.artivisi.absensi.dao.jdbc;
 
 import com.artivisi.absensi.domain.Kehadiran;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author endy
  */
+@Repository
 public class KehadiranDao {
-    private Connection connection;
-    
-    public KehadiranDao() throws Exception {
-        // inisialisasi driver database
-        Class.forName("org.postgresql.Driver").newInstance();
+    @Autowired private DataSource dataSource;
         
-        String url = "jdbc:postgresql://localhost/absensi";
-        String username = "absensi";
-        String password = "absensi";
-        
-        connection = DriverManager.getConnection(url, username, password);
-    }
-    
     public List<Kehadiran> cariSemuaKehadiran() throws Exception {
         String sql = "select * from kehadiran";
         List<Kehadiran> hasil = new ArrayList<Kehadiran>();
+        Connection connection = dataSource.getConnection();
         ResultSet rs = connection.createStatement().executeQuery(sql);
         while(rs.next()){
             Kehadiran k = new Kehadiran();
@@ -43,13 +36,14 @@ public class KehadiranDao {
             k.setJamPulang(new Date(rs.getTime("jam_pulang").getTime()));
             hasil.add(k);
         }
+        connection.close();
         return hasil;
     }
     
     public void simpan(Kehadiran k) throws Exception {
         String sqlInsert = "insert into kehadiran (jam_masuk, jam_pulang) values (?,?)";
         String sqlUpdate = "update kehadiran set jam_masuk=?, jam_pulang=? where id=?";
-        
+        Connection connection = dataSource.getConnection();
         if(k.getId() == null){ // id null artinya record baru
             PreparedStatement ps = connection.prepareStatement(sqlInsert);
             ps.setTimestamp(1, new Timestamp(k.getJamMasuk().getTime()));
@@ -73,5 +67,6 @@ public class KehadiranDao {
             int hasil = ps.executeUpdate();
             System.out.println("Jumlah row yang berhasil diupdate : "+hasil);
         }
+        connection.close();
     }
 }
