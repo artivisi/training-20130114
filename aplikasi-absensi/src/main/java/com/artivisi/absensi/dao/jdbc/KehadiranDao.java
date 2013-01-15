@@ -7,7 +7,9 @@ package com.artivisi.absensi.dao.jdbc;
 import com.artivisi.absensi.domain.Kehadiran;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,5 +44,34 @@ public class KehadiranDao {
             hasil.add(k);
         }
         return hasil;
+    }
+    
+    public void simpan(Kehadiran k) throws Exception {
+        String sqlInsert = "insert into kehadiran (jam_masuk, jam_pulang) values (?,?)";
+        String sqlUpdate = "update kehadiran set jam_masuk=?, jam_pulang=? where id=?";
+        
+        if(k.getId() == null){ // id null artinya record baru
+            PreparedStatement ps = connection.prepareStatement(sqlInsert);
+            ps.setTimestamp(1, new Timestamp(k.getJamMasuk().getTime()));
+            ps.setTimestamp(2, new Timestamp(k.getJamPulang().getTime()));
+            int hasil = ps.executeUpdate();
+            System.out.println("Jumlah row yang berhasil diinsert : "+hasil);
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next()){
+                Integer idBaru = rs.getInt(1);
+                System.out.println("ID record baru : "+idBaru);
+                k.setId(idBaru);
+            } else {
+                System.out.println("Tidak menghasilkan ID baru");
+            }
+        } else { // record lama, update saja
+            PreparedStatement ps = connection.prepareStatement(sqlUpdate);
+            ps.setTimestamp(1, new Timestamp(k.getJamMasuk().getTime()));
+            ps.setTimestamp(2, new Timestamp(k.getJamPulang().getTime()));
+            ps.setInt(3, k.getId());
+            int hasil = ps.executeUpdate();
+            System.out.println("Jumlah row yang berhasil diupdate : "+hasil);
+        }
     }
 }
