@@ -11,8 +11,8 @@ package com.artivisi.absensi.domain;
 public class Jenis {
     private Integer kode;
     private String nama;
-    private Integer dendaTelat;
-    private Integer tarifLembur;
+    private Double dendaTelat;
+    private Double tarifLembur;
 
     public Integer getKode() {
         return kode;
@@ -22,11 +22,11 @@ public class Jenis {
         return nama;
     }
 
-    public Integer getDendaTelat() {
+    public Double getDendaTelat() {
         return dendaTelat;
     }
 
-    public Integer getTarifLembur() {
+    public Double getTarifLembur() {
         return tarifLembur;
     }
 
@@ -39,11 +39,11 @@ public class Jenis {
         this.nama = nama;
     }
 
-    public void setDendaTelat(Integer dendaTelat) {
+    public void setDendaTelat(Double dendaTelat) {
         this.dendaTelat = dendaTelat;
     }
 
-    public void setTarifLembur(Integer tarifLembur) {
+    public void setTarifLembur(Double tarifLembur) {
         this.tarifLembur = tarifLembur;
     }
     
