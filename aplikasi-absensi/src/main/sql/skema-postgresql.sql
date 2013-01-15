@@ -20,9 +20,22 @@ insert into jenis (kode,nama,denda_telat,tarif_lembur)
 values ('2','benny',2000,50000);
 
 
+drop table peserta;
+
 create table peserta(
-int serial primary key, 
+no_peserta varchar, 
 nama varchar(50)
 );
 
-insert into peserta(nama) values('Ustadho');
+
+insert into peserta(no_peserta, nama) values('0001', 'Ustadho');
+
+Create table JamKerja (
+    kode Char(6),
+    nama Char(25),
+    mulai time,
+    selesai time
+);
+
+insert into JamKerja (kode, nama, mulai, selesai)
+values ('423', 'Eka', '07:00:00', '16:00:00')
