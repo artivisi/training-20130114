@@ -11,8 +11,17 @@ import java.util.Date;
  * @author endy
  */
 public class Kehadiran {
+    private Peserta peserta;
     private Date jamMasuk;
     private Date jamPulang;
+
+    public Peserta getPeserta() {
+        return peserta;
+    }
+
+    public void setPeserta(Peserta peserta) {
+        this.peserta = peserta;
+    }
 
     public Date getJamMasuk() {
         return jamMasuk;
