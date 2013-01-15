@@ -4,6 +4,7 @@
  */
 package com.artivisi.absensi.dao;
 
+import com.artivisi.absensi.dao.jdbc.JamKerjaDao;
 import com.artivisi.absensi.domain.JamKerja;
 import com.artivisi.absensi.domain.Kehadiran;
 import java.util.List;
@@ -17,11 +18,11 @@ public class JamKerjaDaoTest {
     
     @Test
     public void testCariSemua() throws Exception {
-        JamKerjaDaoTest kd = new JamKerjaDaoTest();
+        JamKerjaDao kd = new JamKerjaDao();
         List<JamKerja> hasilQuery = kd.cariSemuaJamKerja();
         System.out.println("Jumlah Record : "+hasilQuery.size());
         for (JamKerja JamKerja : hasilQuery) {
-            System.out.println("kode : "+JamKerja.getKode();
+            System.out.println("kode : "+JamKerja.getKode());
             System.out.println("nama : "+JamKerja.getNama());
             System.out.println("mulai : "+JamKerja.getMulai());
             System.out.println("selesai : "+JamKerja.getSelesai());

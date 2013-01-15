@@ -1,0 +1,38 @@
+create table kehadiran (
+    id serial,
+    jam_masuk timestamp,
+    jam_pulang timestamp
+);
+
+insert into kehadiran (jam_masuk, jam_pulang) 
+values ('2013-01-15 08:00:00', '2013-01-15 16:00:00');
+
+create table jenis (
+    kode integer,
+    nama Varchar(20),
+    denda_telat double precision,
+    tarif_lembur double precision
+    
+      
+);
+
+insert into jenis (kode,nama,denda_telat,tarif_lembur) 
+values ('2','benny',2000,50000);
+
+
+create table peserta(
+int serial primary key, 
+nama varchar(50)
+);
+
+insert into peserta(nama) values('Ustadho');
+
+Create table JamKerja (
+    kode Char(6),
+    nama Char(25),
+    mulai time,
+    selesai time
+);
+
+insert into JamKerja (kode, nama, mulai, selesai)
+values ('423', 'Eka', '07:00:00', '16:00:00')
