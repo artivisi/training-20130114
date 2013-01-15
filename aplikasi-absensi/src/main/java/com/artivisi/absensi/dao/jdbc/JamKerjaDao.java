@@ -6,34 +6,27 @@ package com.artivisi.absensi.dao.jdbc;
 
 import com.artivisi.absensi.domain.JamKerja;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Administrator
  */
+@Repository
 public class JamKerjaDao {
+    @Autowired private DataSource dataSource;
     
-    private Connection connection;
-    
-    public JamKerjaDao() throws Exception {
-        // inisialisasi driver database
-        Class.forName("org.postgresql.Driver").newInstance();
-        
-        String url = "jdbc:postgresql://localhost/absensi";
-        String username = "absensi";
-        String password = "absensi";
-        
-        connection = DriverManager.getConnection(url, username, password);
-    }
     
     public List<JamKerja> cariSemuaJamKerja() throws Exception {
         String sql = "select * from JamKerja";
         List<JamKerja> hasil = new ArrayList<JamKerja>();
+        Connection connection = dataSource.getConnection();
         ResultSet rs = connection.createStatement().executeQuery(sql);
         while(rs.next()){
             JamKerja k = new JamKerja();

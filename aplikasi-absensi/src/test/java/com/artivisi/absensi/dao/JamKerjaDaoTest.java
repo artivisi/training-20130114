@@ -9,16 +9,24 @@ import com.artivisi.absensi.domain.JamKerja;
 import com.artivisi.absensi.domain.Kehadiran;
 import java.util.List;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author Administrator
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="classpath*:com/artivisi/**/applicationContext.xml")
 public class JamKerjaDaoTest {
+    
+    @Autowired private JamKerjaDao kd;
     
     @Test
     public void testCariSemua() throws Exception {
-        JamKerjaDao kd = new JamKerjaDao();
         List<JamKerja> hasilQuery = kd.cariSemuaJamKerja();
         System.out.println("Jumlah Record : "+hasilQuery.size());
         for (JamKerja JamKerja : hasilQuery) {
