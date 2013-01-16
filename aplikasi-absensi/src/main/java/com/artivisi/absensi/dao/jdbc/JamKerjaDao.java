@@ -50,5 +50,9 @@ public class JamKerjaDao {
         return hasil;
     }
 
+    public void simpan(JamKerja k) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     
 }

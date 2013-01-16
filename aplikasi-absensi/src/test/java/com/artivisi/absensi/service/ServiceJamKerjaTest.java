@@ -2,11 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.artivisi.absensi.dao;
+package com.artivisi.absensi.service;
 
-import com.artivisi.absensi.dao.jdbc.JamKerjaDao;
 import com.artivisi.absensi.domain.JamKerja;
-import com.artivisi.absensi.domain.Kehadiran;
 import java.util.Date;
 import java.util.List;
 import org.junit.Test;
@@ -17,25 +15,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
- * @author Administrator
+ * @author endy
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath*:com/artivisi/**/applicationContext.xml")
-public class JamKerjaDaoTest {
+public class ServiceJamKerjaTest {
     
-    @Autowired private JamKerjaDao kd;
+    @Autowired
+    private AplikasiAbsenService service;
     
     @Test
     public void testCariSemua() throws Exception {
-        List<JamKerja> hasilQuery = kd.cariSemuaJamKerja();
+        List<JamKerja> hasilQuery = service.cariSemuaJamKerja();
         System.out.println("Jumlah Record : "+hasilQuery.size());
-        for (JamKerja JamKerja : hasilQuery) {
-            System.out.println("kode : "+JamKerja.getKode());
-            System.out.println("nama : "+JamKerja.getNama());
-            System.out.println("mulai : "+JamKerja.getMulai());
-            System.out.println("selesai : "+JamKerja.getSelesai());
+        for (JamKerja jamkerja : hasilQuery) {
+            System.out.println("Kode : "+jamkerja.getKode());
+            System.out.println("Nama : "+jamkerja.getNama());
+            System.out.println("Mulai : "+jamkerja.getMulai());
+            System.out.println("Mulai : "+jamkerja.getSelesai());
         }
     }
+    
     @Test
     public void testInsert() throws Exception {
         JamKerja k = new JamKerja();
@@ -43,7 +43,8 @@ public class JamKerjaDaoTest {
         k.setNama(new String());
         k.setMulai(new Date());
         k.setSelesai(new Date());
-        kd.simpan(k);
+        
+        service.simpan(k);
     }
     
     @Test
@@ -54,7 +55,6 @@ public class JamKerjaDaoTest {
         k.setMulai(new Date());
         k.setSelesai(new Date());
         
-        kd.simpan(k);
+        service.simpan(k);
     }
 }
-

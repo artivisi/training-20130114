@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +34,11 @@ public class Kehadiran {
     @Column(name="jam_pulang", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date jamPulang;
+    
+    // relasi foreign key ke tabel peserta
+    @ManyToOne
+    @JoinColumn(name="id_peserta", nullable=false) // penjelasan konfigurasi foreign key
+    private Peserta peserta;
     
     private String keterangan;
 
@@ -57,6 +64,22 @@ public class Kehadiran {
 
     public void setJamPulang(Date jamPulang) {
         this.jamPulang = jamPulang;
+    }
+
+    public Peserta getPeserta() {
+        return peserta;
+    }
+
+    public void setPeserta(Peserta peserta) {
+        this.peserta = peserta;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
     
     

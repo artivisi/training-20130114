@@ -5,6 +5,7 @@
 package com.artivisi.absensi.service;
 
 import com.artivisi.absensi.domain.Kehadiran;
+import com.artivisi.absensi.domain.Peserta;
 import java.util.Date;
 import java.util.List;
 import org.junit.Test;
@@ -32,14 +33,22 @@ public class ServiceKehadiranTest {
             System.out.println("ID : "+kehadiran.getId());
             System.out.println("Jam Masuk : "+kehadiran.getJamMasuk());
             System.out.println("Jam Pulang : "+kehadiran.getJamPulang());
+            System.out.println("Karyawan : "
+                    +kehadiran.getPeserta().getNomor()
+                    +" - "
+                    +kehadiran.getPeserta().getNama());
         }
     }
     
     @Test
     public void testInsert() throws Exception {
+        Peserta p = new Peserta();
+        p.setId(6);
+        
         Kehadiran k = new Kehadiran();
         k.setJamMasuk(new Date());
         k.setJamPulang(new Date());
+        k.setPeserta(p);
         
         service.simpan(k);
     }
