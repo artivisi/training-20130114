@@ -9,16 +9,23 @@ import com.artivisi.absensi.domain.Kehadiran;
 import java.util.Date;
 import java.util.List;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author endy
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="classpath*:com/artivisi/**/applicationContext.xml")
 public class KehadiranDaoTest {
+    
+    @Autowired private KehadiranDao kd;
     
     @Test
     public void testCariSemua() throws Exception {
-        KehadiranDao kd = new KehadiranDao();
         List<Kehadiran> hasilQuery = kd.cariSemuaKehadiran();
         System.out.println("Jumlah Record : "+hasilQuery.size());
         for (Kehadiran kehadiran : hasilQuery) {
@@ -34,7 +41,6 @@ public class KehadiranDaoTest {
         k.setJamMasuk(new Date());
         k.setJamPulang(new Date());
         
-        KehadiranDao kd = new KehadiranDao();
         kd.simpan(k);
     }
     
@@ -45,7 +51,6 @@ public class KehadiranDaoTest {
         k.setJamMasuk(new Date());
         k.setJamPulang(new Date());
         
-        KehadiranDao kd = new KehadiranDao();
         kd.simpan(k);
     }
 }
