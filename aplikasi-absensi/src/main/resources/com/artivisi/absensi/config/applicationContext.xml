@@ -21,7 +21,7 @@
     Class yang memiliki annotation di atas 
     akan diinstankan dan diisikan dependensinya
     -->
-    <context:component-scan base-package="com.artivisi.absensi.dao.jdbc" />
+    <context:component-scan base-package="com.artivisi.absensi.dao.jdbc, com.artivisi.absensi.dao.hibernate, com.artivisi.absensi.service.impl" />
     
     <!--
     Mendefinisikan object dataSource

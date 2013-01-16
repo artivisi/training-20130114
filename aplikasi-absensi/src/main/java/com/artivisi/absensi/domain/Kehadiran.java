@@ -5,16 +5,35 @@
 package com.artivisi.absensi.domain;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author endy
  */
+@Entity // class ini ada padanannya di database
+@Table(name="t_kehadiran") // kalau nama tabel != nama class, harus dijelaskan
 public class Kehadiran {
+    
+    @Id // field ini adalah primary key
+    @GeneratedValue // nilainya otomatis digenerate
     private Integer id;
-    private Peserta peserta;
+    
+    @Column(name="jam_masuk", nullable=false) // kalau nama kolom != nama variabel, harus dijelaskan
+    @Temporal(TemporalType.TIMESTAMP) // khusus tipe data Date, harus dijelaskan apakah di database DATE, TIME, atau DATETIME
     private Date jamMasuk;
+    
+    @Column(name="jam_pulang", nullable=false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date jamPulang;
+    
+    private String keterangan;
 
     public Integer getId() {
         return id;
@@ -22,14 +41,6 @@ public class Kehadiran {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Peserta getPeserta() {
-        return peserta;
-    }
-
-    public void setPeserta(Peserta peserta) {
-        this.peserta = peserta;
     }
 
     public Date getJamMasuk() {
