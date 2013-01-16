@@ -5,6 +5,7 @@
 package com.artivisi.absensi.service.impl;
 
 import com.artivisi.absensi.dao.hibernate.KehadiranDao;
+import com.artivisi.absensi.dao.hibernate.PesertaDao;
 import com.artivisi.absensi.domain.JamKerja;
 import com.artivisi.absensi.domain.Jenis;
 import com.artivisi.absensi.domain.Kehadiran;
@@ -25,6 +26,9 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
     @Autowired
     private KehadiranDao kehadiranDao;
     
+    @Autowired
+    private PesertaDao pesertaDao;
+    
     @Transactional
     public void simpan(Kehadiran k) {
         kehadiranDao.simpan(k);
@@ -43,12 +47,14 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Transactional
     public void simpan(Peserta p) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        pesertaDao.simpan(p);
     }
 
+    @Transactional(readOnly=true)
     public List<Peserta> cariSemuaPeserta() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return pesertaDao.tampilkanSemuaPeserta();
     }
 
     public void simpan(JamKerja j) {

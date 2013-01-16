@@ -4,14 +4,40 @@
  */
 package com.artivisi.absensi.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  *
  * @author cak-ust
  */
+@Entity
+@Table(name="peserta")
 public class Peserta {
+    @Id 
+    @GeneratedValue
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    @Column(name="no_peserta", nullable=false)
     private String nomor;
+    
+    @Column(name="nama", nullable=false)
     private String nama;
-    public String oldKode;
+    
+    @Transient //variable yang dianggap bukan field table
+    private String oldKode;
 
     public String getNomor() {
         return nomor;
