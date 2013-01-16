@@ -6,31 +6,21 @@ package com.artivisi.absensi.dao.jdbc;
 
 import com.artivisi.absensi.domain.JamKerja;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Administrator
  */
+@Repository
 public class JamKerjaDao {
-    
-    private Connection connection;
-    
-    public JamKerjaDao() throws Exception {
-        // inisialisasi driver database
-        Class.forName("org.postgresql.Driver").newInstance();
-        
-        String url = "jdbc:postgresql://localhost/absensi";
-        String username = "absensi";
-        String password = "absensi";
-        
-        // membuat koneksi ke database
-        connection = DriverManager.getConnection(url, username, password);
-    }
+    @Autowired private DataSource dataSource;
     
     public List<JamKerja> cariSemuaJamKerja() throws Exception {
         String sql = "select * from JamKerja";
@@ -38,6 +28,7 @@ public class JamKerjaDao {
         
         // koneksi digunakan untuk menjalankan query
         // hasilnya berupa object ResultSet
+        Connection connection = dataSource.getConnection();
         ResultSet rs = connection.createStatement().executeQuery(sql);
         while(rs.next()){ // kalau masih ada datanya, rs.next -> true
             // hasil query dibungkus dalam object JamKerja
