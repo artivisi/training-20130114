@@ -4,7 +4,6 @@
  */
 package com.artivisi.absensi.service;
 
-import com.artivisi.absensi.domain.Kehadiran;
 import com.artivisi.absensi.domain.Peserta;
 import java.util.List;
 import org.junit.Test;
