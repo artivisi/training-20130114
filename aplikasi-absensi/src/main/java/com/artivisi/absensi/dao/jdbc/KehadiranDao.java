@@ -20,8 +20,15 @@ import org.springframework.stereotype.Repository;
  *
  * @author endy
  */
+
+// annotation @Repository, akan discan oleh Spring Framework
+// dan kemudian diinisialisasi
+// inisialisasi : new + mengisi dependensi @Autowired
 @Repository
 public class KehadiranDao {
+    
+    // variabel datasource, diisikan oleh Spring Framework
+    // karena diberikan @Autowired
     @Autowired private DataSource dataSource;
         
     public List<Kehadiran> cariSemuaKehadiran() throws Exception {
