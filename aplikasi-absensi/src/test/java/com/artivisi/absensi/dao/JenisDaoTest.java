@@ -10,16 +10,23 @@ import com.artivisi.absensi.domain.Jenis;
 import com.artivisi.absensi.domain.Kehadiran;
 import java.util.List;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author bebenpiko
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="classpath*:com/artivisi/**/applicationContext.xml")
 public class JenisDaoTest {
     
-     @Test
+    @Autowired private JenisDAO kd;
+    @Test
     public void testCariSemua() throws Exception {
-        JenisDAO kd = new JenisDAO();
         List<Jenis> hasilQuery = kd.cariSemuaJenis();
         System.out.println("Jumlah Record : "+hasilQuery.size());
         for (Jenis jenis : hasilQuery) {

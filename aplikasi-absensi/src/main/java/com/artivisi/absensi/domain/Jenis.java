@@ -4,14 +4,32 @@
  */
 package com.artivisi.absensi.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+
 /**
  *
  * @author bebenpiko
  */
+@Entity
+@Table(name="t_jenis")
 public class Jenis {
+    
+    @Id
+    @GeneratedValue
     private Integer kode;
+    
+    @Column(name="nama")
     private String nama;
+    
+    @Column(name="denda_telat")
     private Double dendaTelat;
+    
+    
     private Double tarifLembur;
 
     public Integer getKode() {
@@ -46,7 +64,5 @@ public class Jenis {
     public void setTarifLembur(Double tarifLembur) {
         this.tarifLembur = tarifLembur;
     }
-    
-         
-    
+  
 }
