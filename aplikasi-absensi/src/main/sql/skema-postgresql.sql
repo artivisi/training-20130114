@@ -28,3 +28,4 @@ nama varchar(50)
 );
 
 insert into peserta(no_peserta, nama) values('0001', 'Ustadho');
+edit lagi
