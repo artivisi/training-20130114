@@ -21,7 +21,7 @@ public class KehadiranDao {
     private SessionFactory sessionFactory;
     
     public List<Kehadiran> cariSemuaKehadiran(){
-        String hql = "select k from Kehadiran k";
+        String hql = "select k from Kehadiran k join fetch k.peserta";
         List<Kehadiran> hasil = sessionFactory.getCurrentSession()
                 .createQuery(hql)
                 .list();
