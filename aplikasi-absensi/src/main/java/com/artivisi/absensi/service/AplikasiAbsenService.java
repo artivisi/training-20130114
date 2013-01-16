@@ -8,6 +8,7 @@ import com.artivisi.absensi.domain.JamKerja;
 import com.artivisi.absensi.domain.Jenis;
 import com.artivisi.absensi.domain.Kehadiran;
 import com.artivisi.absensi.domain.Peserta;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +18,8 @@ import java.util.List;
 public interface AplikasiAbsenService {
     void simpan(Kehadiran k);
     List<Kehadiran> cariSemuaKehadiran();
+    public List<Kehadiran> cariSemuaKehadiran(int start, int rows);
+    public List<Kehadiran> cariKehadiranDalamPeriode(Date mulai, Date sampai, int start, int rows);
     
     void simpan(Jenis j);
     List<Jenis> cariSemuaJenis();
@@ -26,4 +29,7 @@ public interface AplikasiAbsenService {
     
     void simpan(JamKerja j);
     List<JamKerja> cariSemuaJamKerja();
+
+    public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows);
+
 }

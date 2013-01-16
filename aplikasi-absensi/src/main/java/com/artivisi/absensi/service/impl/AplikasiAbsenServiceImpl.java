@@ -11,6 +11,7 @@ import com.artivisi.absensi.domain.Jenis;
 import com.artivisi.absensi.domain.Kehadiran;
 import com.artivisi.absensi.domain.Peserta;
 import com.artivisi.absensi.service.AplikasiAbsenService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +65,19 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
     public List<JamKerja> cariSemuaJamKerja() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Transactional
+    public List<Kehadiran> cariSemuaKehadiran(int start, int rows) {
+        return kehadiranDao.cariSemuaKehadiran(start, rows);
+    }
+
+    @Transactional
+    public List<Kehadiran> cariKehadiranDalamPeriode(Date mulai, Date sampai, int start, int rows) {
+        return kehadiranDao.cariKehadiranDalamPeriode(mulai, sampai, start, rows);
+    }
+
+    @Transactional
+    public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows) {
+        return kehadiranDao.cariKehadiranPesertaByNamaDanPeriode(nama, mulai, sampai, start, rows);
+    }
 }
