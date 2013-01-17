@@ -5,7 +5,7 @@
     <groupId>com.artivisi.absensi</groupId>
     <artifactId>aplikasi-absensi</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>aplikasi-absensi</name>
     <url>http://maven.apache.org</url>
@@ -60,4 +60,24 @@
         </dependency>
         
     </dependencies>
+    
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <configuration>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>10000</port>
+                        </connector>
+                    </connectors>
+                    <stopPort>10066</stopPort>
+                    <stopKey>jetty</stopKey>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
