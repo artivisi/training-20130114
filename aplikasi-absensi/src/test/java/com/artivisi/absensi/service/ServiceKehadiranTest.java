@@ -57,7 +57,7 @@ public class ServiceKehadiranTest {
     @Test
     public void testUpdate() throws Exception {
         Kehadiran k = new Kehadiran();
-        k.setId(1);
+        k.setId(7);
         k.setJamMasuk(new Date());
         k.setJamPulang(new Date());
         
