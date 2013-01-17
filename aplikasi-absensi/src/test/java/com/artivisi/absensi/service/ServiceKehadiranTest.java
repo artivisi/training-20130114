@@ -44,7 +44,9 @@ public class ServiceKehadiranTest {
     @Test
     public void testInsert() throws Exception {
         Peserta p = new Peserta();
-        p.setId(6);
+        p.setNama("Endy");
+        p.setNomor("123");
+        service.simpan(p);
         
         Kehadiran k = new Kehadiran();
         k.setJamMasuk(new Date());
