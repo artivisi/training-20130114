@@ -24,11 +24,4 @@
     <!-- sehingga tetap bisa mengakses folder selain WEB-INF, misalnya img, 
             css, js -->
     <mvc:default-servlet-handler />
-
-    <!-- ini untuk menangani upload -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-            <!-- Maksimal Upload 10 MB -->
-            <property name="maxUploadSize" value="10000000" />
-    </bean>
-
 </beans>
