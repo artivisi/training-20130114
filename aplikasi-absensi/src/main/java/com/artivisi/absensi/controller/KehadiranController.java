@@ -4,13 +4,22 @@
  */
 package com.artivisi.absensi.controller;
 
+import com.artivisi.absensi.converter.PesertaConverter;
 import com.artivisi.absensi.domain.Kehadiran;
+import com.artivisi.absensi.domain.Peserta;
 import com.artivisi.absensi.service.AplikasiAbsenService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -21,6 +30,18 @@ public class KehadiranController {
     @Autowired
     private AplikasiAbsenService service;
     
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        
+        // converter untuk tipe data tanggal (Date)
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(formatter, true));
+        
+        // konverter untuk tipe data Peserta
+        PesertaConverter px = new PesertaConverter(service);
+        binder.registerCustomEditor(Peserta.class, px);
+    }
+    
     @RequestMapping("/kehadiran/list")
     public ModelMap daftarKehadiran(){
         ModelMap mm = new ModelMap();
@@ -30,5 +51,24 @@ public class KehadiranController {
         System.out.println("Jumlah data : "+data.size());
         
         return mm;
+    }
+    
+    @RequestMapping(value="/kehadiran/form", method= RequestMethod.GET)
+    public ModelMap tampilkanForm(){
+        System.out.println("Tampilkan form kehadiran");
+        ModelMap mm = new ModelMap();
+        return mm;
+    }
+    
+    @RequestMapping(value="/kehadiran/form", method= RequestMethod.POST)
+    public String prosesForm(@ModelAttribute Kehadiran x){
+        System.out.println("Memproses form kehadiran");
+        System.out.println("Peserta : "+x.getPeserta().getNomor());
+        System.out.println("Jam Masuk : "+x.getJamMasuk());
+        System.out.println("Jam Pulang : "+x.getJamPulang());
+
+        service.simpan(x);
+        
+        return "redirect:list";
     }
 }

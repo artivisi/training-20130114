@@ -26,10 +26,13 @@ public interface AplikasiAbsenService {
     
     void simpan(Peserta p);
     List<Peserta> cariSemuaPeserta();
+    public Peserta cariPesertaById(Integer idPesertaInt);
     
     void simpan(JamKerja j);
     List<JamKerja> cariSemuaJamKerja();
 
     public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows);
+
+    
 
 }

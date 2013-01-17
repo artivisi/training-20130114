@@ -85,4 +85,9 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
     public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows) {
         return kehadiranDao.cariKehadiranPesertaByNamaDanPeriode(nama, mulai, sampai, start, rows);
     }
+
+    @Transactional
+    public Peserta cariPesertaById(Integer idPesertaInt) {
+        return pesertaDao.cariById(idPesertaInt);
+    }
 }

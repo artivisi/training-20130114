@@ -29,5 +29,10 @@ public class PesertaDao {
     public void simpan(Peserta p){
         sessionFactory.getCurrentSession().saveOrUpdate(p);
     }
+
+    public Peserta cariById(Integer idPesertaInt) {
+        return (Peserta) sessionFactory.getCurrentSession()
+                .get(Peserta.class, idPesertaInt);
+    }
     
 }
