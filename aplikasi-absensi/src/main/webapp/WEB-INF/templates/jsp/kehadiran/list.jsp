@@ -11,10 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Daftar Kehadiran</title>
+
+        <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext-4.1.1a-gpl/resources/css/ext-all.css" />
+        <script type="text/javascript" src="http://cdn.sencha.com/ext-4.1.1a-gpl/ext-all.js"></script>
+        <script type="text/javascript" src="<%= request.getContextPath()%>/js/extjs-demo.js"></script>
+
     </head>
     <body>
         <h1>Daftar Kehadiran</h1>
-        
+
         <a href="form">Tambah Data Baru</a>
         <a href="laporan-kehadiran.pdf">Unduh PDF</a>
         <a href="laporan-kehadiran.xls">Unduh XLS</a>
@@ -47,5 +52,8 @@
                 </c:forEach>
             </tbody>
         </table>
+        
+        <div id="gridKehadiran"></div>
+        
     </body>
 </html>

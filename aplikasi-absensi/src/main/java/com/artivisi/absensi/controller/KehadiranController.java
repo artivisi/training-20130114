@@ -10,7 +10,9 @@ import com.artivisi.absensi.domain.Peserta;
 import com.artivisi.absensi.service.AplikasiAbsenService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -125,5 +128,16 @@ public class KehadiranController {
         mm.addAttribute("dataKehadiran", data);
 
         return mm;
+    }
+    
+    @RequestMapping("/kehadiran/json")
+    @ResponseBody
+    public Map<String, Object> jsonOutput(){
+        Map<String, Object> hasil = new HashMap<String, Object>();
+        
+        List<Kehadiran> data = service.cariSemuaKehadiran();
+        hasil.put("data", data);
+        
+        return hasil;
     }
 }
