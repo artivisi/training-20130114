@@ -117,9 +117,12 @@ public class KehadiranController {
         String uri = request.getRequestURI();
         String format = uri.substring(uri.lastIndexOf(".") + 1);
 
+        List<Kehadiran> data = service.cariSemuaKehadiran();
+        
         mm.addAttribute("mulai", mulai);
         mm.addAttribute("sampai", sampai);
         mm.addAttribute("format", format);
+        mm.addAttribute("dataKehadiran", data);
 
         return mm;
     }

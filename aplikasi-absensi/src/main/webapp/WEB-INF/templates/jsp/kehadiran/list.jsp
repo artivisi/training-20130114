@@ -16,7 +16,9 @@
         <h1>Daftar Kehadiran</h1>
         
         <a href="form">Tambah Data Baru</a>
-        
+        <a href="laporan-kehadiran.pdf">Unduh PDF</a>
+        <a href="laporan-kehadiran.xls">Unduh XLS</a>
+
         <table border="1">
             <thead>
                 <tr>
