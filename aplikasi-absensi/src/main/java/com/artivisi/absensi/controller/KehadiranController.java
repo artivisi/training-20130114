@@ -67,7 +67,9 @@ public class KehadiranController {
     @RequestMapping(value="/kehadiran/form", method= RequestMethod.POST)
     public String prosesForm(@ModelAttribute @Valid Kehadiran x, BindingResult errors){
         System.out.println("Memproses form kehadiran");
-        System.out.println("Peserta : "+x.getPeserta().getNomor());
+        if(x.getPeserta() != null){
+            System.out.println("Peserta : "+x.getPeserta().getNomor());
+        }
         System.out.println("Jam Masuk : "+x.getJamMasuk());
         System.out.println("Jam Pulang : "+x.getJamPulang());
         
