@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 /**
  *
@@ -27,15 +29,20 @@ public class Kehadiran {
     @GeneratedValue // nilainya otomatis digenerate
     private Integer id;
     
+    @NotNull
+    @Past
     @Column(name="jam_masuk", nullable=false) // kalau nama kolom != nama variabel, harus dijelaskan
     @Temporal(TemporalType.TIMESTAMP) // khusus tipe data Date, harus dijelaskan apakah di database DATE, TIME, atau DATETIME
     private Date jamMasuk;
     
+    @NotNull
+    @Past
     @Column(name="jam_pulang", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date jamPulang;
     
     // relasi foreign key ke tabel peserta
+    @NotNull
     @ManyToOne
     @JoinColumn(name="id_peserta", nullable=false) // penjelasan konfigurasi foreign key
     private Peserta peserta;

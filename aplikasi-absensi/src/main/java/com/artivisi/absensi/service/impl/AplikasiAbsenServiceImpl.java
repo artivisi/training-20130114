@@ -90,4 +90,8 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
     public Peserta cariPesertaById(Integer idPesertaInt) {
         return pesertaDao.cariById(idPesertaInt);
     }
+
+	public Kehadiran cariKehadiranById(Integer id) {
+		return kehadiranDao.cariById(id);
+	}
 }

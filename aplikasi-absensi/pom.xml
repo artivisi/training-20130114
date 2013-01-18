@@ -68,6 +68,12 @@
         </dependency>
         
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.3.1.Final</version>
+        </dependency>
+        
+        <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
@@ -105,7 +111,6 @@
             <version>${ch.qos.logback.version}</version>
             <scope>runtime</scope>
         </dependency>
-        
     </dependencies>
     
     

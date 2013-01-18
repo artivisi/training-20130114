@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,23 +15,27 @@
     <body>
         <h1>Entri Kehadiran</h1>
         
-        <form method="post">
+        <spring:form modelAttribute="kehadiran">
             <table border="1">
                 <tbody>
                     <tr>
                         <td>Peserta</td>
-                        <td><input name="peserta"></td>
-                        <td></td>
+                        <td>
+                            <spring:input path="peserta"/>
+                        </td>
+                        <td>
+                            <spring:errors path="peserta" />
+                        </td>
                     </tr>
                     <tr>
                         <td>Jam Masuk</td>
-                        <td><input name="jamMasuk"></td>
-                        <td></td>
+                        <td><spring:input path="jamMasuk" /></td>
+                        <td><spring:errors path="jamMasuk" /></td>
                     </tr>
                     <tr>
                         <td>Jam Pulang</td>
-                        <td><input name="jamPulang"></td>
-                        <td></td>
+                        <td><spring:input path="jamPulang" /></td>
+                        <td><spring:errors path="jamPulang" /></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -40,7 +45,7 @@
                 </tbody>
             </table>
 
-        </form>
+        </spring:form>
         
     </body>
 </html>

@@ -70,4 +70,9 @@ public class KehadiranDao {
                 .list();
         return hasil;
     }
+
+	public Kehadiran cariById(Integer id) {
+		return (Kehadiran) sessionFactory.getCurrentSession()
+				.get(Kehadiran.class, id);
+	}
 }

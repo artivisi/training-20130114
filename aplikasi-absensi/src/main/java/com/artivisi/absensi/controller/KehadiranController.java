@@ -11,10 +11,12 @@ import com.artivisi.absensi.service.AplikasiAbsenService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,18 +59,23 @@ public class KehadiranController {
     public ModelMap tampilkanForm(){
         System.out.println("Tampilkan form kehadiran");
         ModelMap mm = new ModelMap();
+        Kehadiran k = new Kehadiran();
+        mm.addAttribute("kehadiran", k);
         return mm;
     }
     
     @RequestMapping(value="/kehadiran/form", method= RequestMethod.POST)
-    public String prosesForm(@ModelAttribute Kehadiran x){
+    public String prosesForm(@ModelAttribute @Valid Kehadiran x, BindingResult errors){
         System.out.println("Memproses form kehadiran");
         System.out.println("Peserta : "+x.getPeserta().getNomor());
         System.out.println("Jam Masuk : "+x.getJamMasuk());
         System.out.println("Jam Pulang : "+x.getJamPulang());
-
-        service.simpan(x);
         
+        if(errors.hasErrors()) {
+            return "/kehadiran/form";
+        } 
+        
+        service.simpan(x);
         return "redirect:list";
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 public interface AplikasiAbsenService {
     void simpan(Kehadiran k);
     List<Kehadiran> cariSemuaKehadiran();
+    Kehadiran cariKehadiranById(Integer id);
     public List<Kehadiran> cariSemuaKehadiran(int start, int rows);
     public List<Kehadiran> cariKehadiranDalamPeriode(Date mulai, Date sampai, int start, int rows);
     
