@@ -14,14 +14,17 @@
     </head>
     <body>
         <h1>Entri Kehadiran</h1>
-        
+
         <spring:form modelAttribute="kehadiran">
             <table border="1">
                 <tbody>
                     <tr>
                         <td>Peserta</td>
                         <td>
-                            <spring:input path="peserta"/>
+                            <spring:select path="peserta">
+                                <spring:option value="" label="--Pilih Peserta --"/>
+                                <spring:options items="${daftarPeserta}" itemValue="id" itemLabel="nama"/>
+                            </spring:select>  
                         </td>
                         <td>
                             <spring:errors path="peserta" />
@@ -45,7 +48,7 @@
                 </tbody>
             </table>
 
-        </spring:form>
-        
-    </body>
+</spring:form>
+
+</body>
 </html>

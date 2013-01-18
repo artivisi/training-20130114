@@ -56,6 +56,11 @@ public class KehadiranController {
         return mm;
     }
     
+    @ModelAttribute("daftarPeserta")
+    public List<Peserta> daftarPeserta(){
+        return service.cariSemuaPeserta();
+    }
+    
     @RequestMapping(value="/kehadiran/form", method= RequestMethod.GET)
     public ModelMap tampilkanForm(@RequestParam(required=false) Integer id){
         System.out.println("Tampilkan form kehadiran");
