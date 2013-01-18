@@ -21,7 +21,7 @@
                     <tr>
                         <td>Peserta</td>
                         <td>
-                            <spring:select path="peserta">
+                            <spring:select path="peserta.id">
                                 <spring:option value="" label="--Pilih Peserta --"/>
                                 <spring:options items="${daftarPeserta}" itemValue="id" itemLabel="nama"/>
                             </spring:select>  

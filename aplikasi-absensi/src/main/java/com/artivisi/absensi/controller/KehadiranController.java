@@ -84,6 +84,10 @@ public class KehadiranController {
         System.out.println("Jam Masuk : "+x.getJamMasuk());
         System.out.println("Jam Pulang : "+x.getJamPulang());
         
+        if(x.getPeserta().getId() == null){
+            errors.rejectValue("peserta", "kehadiran.peserta.invalid");
+        }
+        
         if(errors.hasErrors()) {
             return "/kehadiran/form";
         } 
