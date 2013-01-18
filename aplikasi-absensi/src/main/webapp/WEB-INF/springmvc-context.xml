@@ -30,5 +30,12 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/templates/jsp/"/>
         <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
+    
+    <!-- konfigurasi view resolver untuk memproses template jasper report -->
+    <bean id="viewResolverJasper" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="basename" value="jasperTemplates"/>
+        <property name="order" value="1"/>
     </bean>
 </beans>
