@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -56,10 +57,15 @@ public class KehadiranController {
     }
     
     @RequestMapping(value="/kehadiran/form", method= RequestMethod.GET)
-    public ModelMap tampilkanForm(){
+    public ModelMap tampilkanForm(@RequestParam(required=false) Integer id){
         System.out.println("Tampilkan form kehadiran");
         ModelMap mm = new ModelMap();
-        Kehadiran k = new Kehadiran();
+        
+        Kehadiran k = service.cariKehadiranById(id);
+        if(k == null){
+            k = new Kehadiran();
+        }
+        
         mm.addAttribute("kehadiran", k);
         return mm;
     }

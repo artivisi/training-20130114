@@ -22,32 +22,31 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author endy
  */
-@Service 
+@Service
 public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
 
     @Autowired
     private KehadiranDao kehadiranDao;
-    
     @Autowired
     private PesertaDao pesertaDao;
-    
     @Autowired
     private JenisDao jenisDao;
-    
+
     @Transactional
     public void simpan(Kehadiran k) {
         kehadiranDao.simpan(k);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Kehadiran> cariSemuaKehadiran() {
         return kehadiranDao.cariSemuaKehadiran();
     }
-    @Transactional    
+
+    @Transactional
     public void simpan(Jenis z) {
         jenisDao.simpan(z);
     }
-    
+
     @Transactional
     public List<Jenis> cariSemuaJenis() {
         return jenisDao.cariSemuaJenis();
@@ -58,7 +57,7 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
         pesertaDao.simpan(p);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Peserta> cariSemuaPeserta() {
         return pesertaDao.tampilkanSemuaPeserta();
     }
@@ -91,7 +90,11 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
         return pesertaDao.cariById(idPesertaInt);
     }
 
-	public Kehadiran cariKehadiranById(Integer id) {
-		return kehadiranDao.cariById(id);
-	}
+    @Transactional
+    public Kehadiran cariKehadiranById(Integer id) {
+        if (id == null) {
+            return null;
+        }
+        return kehadiranDao.cariById(id);
+    }
 }
