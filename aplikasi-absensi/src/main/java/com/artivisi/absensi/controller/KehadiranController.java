@@ -97,6 +97,15 @@ public class KehadiranController {
         service.simpan(x);
         return "redirect:list";
     }
+    
+    @RequestMapping("/kehadiran/delete")
+    public String hapus(@RequestParam Integer id){
+        Kehadiran k = service.cariKehadiranById(id);
+        if(k != null){
+            service.hapus(k);
+        }
+        return "redirect:list";
+    }
 
     @RequestMapping("/kehadiran/laporan-kehadiran")
     public ModelMap laporanKehadiran(HttpServletRequest request) {

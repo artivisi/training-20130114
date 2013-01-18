@@ -75,4 +75,8 @@ public class KehadiranDao {
 		return (Kehadiran) sessionFactory.getCurrentSession()
 				.get(Kehadiran.class, id);
 	}
+
+    public void hapus(Kehadiran k) {
+        sessionFactory.getCurrentSession().delete(k);
+    }
 }

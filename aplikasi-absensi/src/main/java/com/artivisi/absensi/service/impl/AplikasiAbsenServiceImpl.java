@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author endy
  */
-@Service
+@Service @Transactional
 public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
 
     @Autowired
@@ -32,7 +32,6 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
     @Autowired
     private JenisDao jenisDao;
 
-    @Transactional
     public void simpan(Kehadiran k) {
         kehadiranDao.simpan(k);
     }
@@ -42,17 +41,14 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
         return kehadiranDao.cariSemuaKehadiran();
     }
 
-    @Transactional
     public void simpan(Jenis z) {
         jenisDao.simpan(z);
     }
 
-    @Transactional
     public List<Jenis> cariSemuaJenis() {
         return jenisDao.cariSemuaJenis();
     }
 
-    @Transactional
     public void simpan(Peserta p) {
         pesertaDao.simpan(p);
     }
@@ -70,31 +66,30 @@ public class AplikasiAbsenServiceImpl implements AplikasiAbsenService {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Transactional
     public List<Kehadiran> cariSemuaKehadiran(int start, int rows) {
         return kehadiranDao.cariSemuaKehadiran(start, rows);
     }
 
-    @Transactional
     public List<Kehadiran> cariKehadiranDalamPeriode(Date mulai, Date sampai, int start, int rows) {
         return kehadiranDao.cariKehadiranDalamPeriode(mulai, sampai, start, rows);
     }
 
-    @Transactional
     public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows) {
         return kehadiranDao.cariKehadiranPesertaByNamaDanPeriode(nama, mulai, sampai, start, rows);
     }
 
-    @Transactional
     public Peserta cariPesertaById(Integer idPesertaInt) {
         return pesertaDao.cariById(idPesertaInt);
     }
 
-    @Transactional
     public Kehadiran cariKehadiranById(Integer id) {
         if (id == null) {
             return null;
         }
         return kehadiranDao.cariById(id);
+    }
+
+    public void hapus(Kehadiran k) {
+        kehadiranDao.hapus(k);
     }
 }

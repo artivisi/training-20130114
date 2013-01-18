@@ -34,6 +34,8 @@ public interface AplikasiAbsenService {
 
     public List<Kehadiran> cariKehadiranPesertaByNamaDanPeriode(String nama, Date mulai, Date sampai, int start, int rows);
 
+    public void hapus(Kehadiran k);
+
     
 
 }
